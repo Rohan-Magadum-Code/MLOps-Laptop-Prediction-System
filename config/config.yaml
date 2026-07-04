@@ -1,0 +1,7 @@
+artifacts_root: artifacts
+
+data_ingestion:
+  root_dir: artifacts/data_ingestion
+  source_URL: https://raw.githubusercontent.com/Rohan-Magadum-Code/MLOps-Laptop-Prediction-System/main/laptop_price_data.zip
+  local_data_file: artifacts/data_ingestion/laptop_price_data.zip
+  unzip_dir: artifacts/data_ingestion

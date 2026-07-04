@@ -1,0 +1,9 @@
+numpy
+pandas
+pyYAML
+joblib
+python-box
+matplotlib
+seaborn
+scikit-learn
+-e .
