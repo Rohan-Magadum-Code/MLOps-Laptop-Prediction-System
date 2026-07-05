@@ -1,1 +1,15 @@
-key: value
+COLUMNS:
+  Company: str
+  Typename: str
+  Inches: float64
+  ScreenResolution: str
+  Cpu: str
+  Ram: str
+  Memory: str
+  Gpu: str
+  OpSys: str
+  Weight: str
+  Price: float64
+
+TARGET_NAME:
+  Price: float64
