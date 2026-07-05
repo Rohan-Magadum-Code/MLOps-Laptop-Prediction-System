@@ -1,6 +1,6 @@
 COLUMNS:
   Company: str
-  Typename: str
+  TypeName: str
   Inches: float64
   ScreenResolution: str
   Cpu: str
