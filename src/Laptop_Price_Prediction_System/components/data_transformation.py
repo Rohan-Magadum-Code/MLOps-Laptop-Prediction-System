@@ -3,6 +3,9 @@ import pandas as pd
 import re
 from sklearn.model_selection import train_test_split
 from Laptop_Price_Prediction_System import logger
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import OneHotEncoder, StandardScaler
+import joblib
 from Laptop_Price_Prediction_System.entity.config_entity import DataTransformationConfig
 
 class DataTransformation:
@@ -119,5 +122,26 @@ class DataTransformation:
         test_df = X_test.copy()
         test_df['Price'] = y_test
 
-        train_df.to_csv(os.path.join(self.config.root_dir, "train.csv"), index = False)
-        test_df.to_csv(os.path.join(self.config.root_dir, "test.csv"), index = False)
+        train_df.to_csv(self.config.train_data_path, index = False)
+        test_df.to_csv(self.config.test_data_path, index = False)
+    
+    def create_preprocessor(self):
+        logger.info("Starting Data Preprocessing")
+        train_df = pd.read_csv(self.config.train_data_path)
+
+        X = train_df.drop(columns='Price')
+
+        categorical_columns = X.select_dtypes(include=['object']).columns
+        numerical_columns = X.select_dtypes(include=['number']).columns
+
+        preprocessor = ColumnTransformer(transformers=[
+            ('cat', OneHotEncoder(sparse_output=False, drop='first'), categorical_columns),
+            ('num', StandardScaler(), numerical_columns)
+        ])
+        
+        logger.info("Completed Data Preprocessing")
+
+        X_processed = preprocessor.fit(X)
+        
+        logger.info("Saved Preprocessor Object")
+        joblib.dump(X_processed, self.config.preprocessor_obj_file_path)

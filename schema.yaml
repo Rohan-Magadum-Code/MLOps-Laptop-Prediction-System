@@ -11,5 +11,5 @@ COLUMNS:
   Weight: str
   Price: float64
 
-TARGET_NAME:
-  Price: float64
+TARGET_COLUMN:
+  name: Price
