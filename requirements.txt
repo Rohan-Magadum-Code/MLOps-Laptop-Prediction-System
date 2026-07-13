@@ -6,4 +6,5 @@ python-box
 matplotlib
 seaborn
 scikit-learn
+streamlit
 -e .
